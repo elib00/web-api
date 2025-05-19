@@ -1,0 +1,59 @@
+﻿1.) 
+	- Click Project > ManageNuGet Packages
+	- Download Microsoft.EntityFrameworkCore.SqlServer, Microsoft.EntityFrameworkCore, Microsoft.EntityFrameworkCore.Tools
+
+2.)
+	- Create Models, Services, Repository, & DTO Folders
+
+3. )
+	- Create a class called AppDbContext/BackendDbContext, etc.
+	- Inherit from DbContext (from EF Core)
+	- Add a constructor that takes DbContextOptions<AppDbContext> and passes it to the base constructor
+	- Add a DbSet for each model you want to use in your database
+
+4. Repository
+	- Create interface and start with 'I' (eg. IUserRepository, IAuthRepository)
+	- Create repo class and inherit from the interface for dependency injection
+
+5. Service
+	- Create interface and start with 'I' (eg. IUserService, IAuthService)
+	- Create service class and inherit from the interface for dependency injection
+
+6. Controller
+	- Inherit from ControllerBase
+	- [Route("routename")] - attribute that defines the endpoint name
+	- [HttpGet] - attribute that defines the HTTP method
+	- [HttpPost] - attribute that defines the HTTP method]
+	- [FromBody] - attribute that tells the controller to expect a body in the request
+	- [FromQuery] - attribute that tells the controller to expect a query string in the request]
+	- [FromRoute] - attribute that tells the controller to expect a route parameter in the request] (users/{id})
+
+7. 
+	- Open Program.cs
+	- Register repository and service in the DI (dependency injection) container
+
+8. 
+	- Add Db connection string to appsettings.json
+	- Add the connection string to the DbContext in Program.cs
+
+9.
+	- Open Tools
+	- Open NuGet Package Manager
+	- Open Package Manager Console
+	- Run the command: Add-Migration InitialCreate
+	- Run the command: Update-Database
+
+	
+
+
+
+---------------------------------------
+Context - maps models to the Database
+Repository -> only for data access, do not include app/business logic
+Service -> all business logic
+Controller -> only for accepting requests
+
+
+Task - for async calls
+Scoped - one instance per request
+Transient - creates an instance everytime it is needed
